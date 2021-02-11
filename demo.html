@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <div id="image-loader" style="display: none;">
+    <img src="photo2B.jpg" id="photo-A" alt="">
+    <img src="photo2A.jpg" id="photo-B" alt="">
+  </div>
+  
+  <canvas style="border: 1px solid gray;" id="change-container">
+    <h1>Online Demo</h1>
+  </canvas>
+  <button onclick="run(10)">Run demo</button>
+
+  <script>
+    // load images
+    const photoA = document.getElementById('photo-A');
+    const photoB = document.getElementById('photo-B');
+
+    // setup canvas
+    const cnvs = document.getElementById('change-container');
+    cnvs.width = 750;
+    cnvs.height = 555;
+    const c = cnvs.getContext('2d');
+
+    const run = (reps) => {
+
+      const timings = {long: 500, short: 2000};
+      const images = [photoA, 'gap', photoB];
+
+      let i = 0; // loop index
+      let ii = 0; // image index
+
+      let timeOut = 0;
+
+      while (i <= reps) {
+        
+        if (images[ii] !== 'gap') {
+          timeOut += timings.long;
+          image = images[ii];
+          setTimeout(() => {
+            c.drawImage(image, 0, 0, 750, 555);
+          }, timeOut);
+        } else {
+          timeOut += timings.long;
+          setTimeout(() => {
+            c.fillRect(0, 0, 755, 555);
+          }, timeOut);
+        }
+
+        console.log();
+
+        i++;
+        ii++;
+
+        if (ii > 1) {
+          ii = 0;
+        }
+
+      }
+    };
+
+    // window.onload = () => {
+    // };
+
+  </script>
+
+</body>
+</html>
