@@ -13,10 +13,12 @@
     <img src="photo2A.jpg" id="photo-B" alt="">
   </div>
   
-  <canvas style="border: 1px solid gray;" id="change-container">
-    <h1>Online Demo</h1>
-  </canvas>
-  <button onclick="run(10)">Run demo</button>
+  <canvas style="border: 1px solid gray;" id="change-container"></canvas>
+  <h3>Online Demo</h3>
+  <p>
+    Try our online demo! (WARNING: This image will rapidly flicker, which might trigger epilepsy in some individuals in a dark room.)
+  </p>
+  <button onclick="run(40)">Run demo</button>
 
   <script>
     // load images
@@ -28,7 +30,7 @@
     cnvs.width = 750;
     cnvs.height = 555;
     const c = cnvs.getContext('2d');
-    const timings = {long: 2000, short: 500};
+    const timings = {long: 400, short: 300};
     const images = [photoA, 'gap', photoB, 'gap'];
 
     const run = (reps) => {
@@ -39,52 +41,33 @@
       while (i <= reps) {
         setTimeout(() => {
           if (images[ii] !== 'gap') {
-            // timeOut += timings.long;
             const image = images[ii];
-            console.log(ii, timeOut);
             c.drawImage(image, 0, 0, 750, 555);
           } else {
-            // timeOut += timings.long;
-            console.log(ii, timeOut);
+            c.fillStyle = "#393939";
             c.fillRect(0, 0, 755, 555);
           }
-          i++;
           ii++;
           if (ii > 3) {
             ii = 0;
           }
         }, timeOut);
 
-
-
-        
         if (images[ii] !== 'gap') {
           timeOut += timings.short;
           image = images[ii];
-          setTimeout(() => {
-            console.log(ii, timeOut);
-            c.drawImage(image, 0, 0, 750, 555);
-          }, timeOut);
         } else {
           timeOut += timings.long;
-          setTimeout(() => {
-            console.log(ii, timeOut);
-            c.fillRect(0, 0, 755, 555);
-          }, timeOut);
-        }
-
-        if (ii > 3) {
-          ii = 0;
         }
 
         i++;
         ii++;
         
+        if (ii > 3) {
+          ii = 0;
+        }
       }
     };
-
-    // window.onload = () => {
-    // };
 
   </script>
 
