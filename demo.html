@@ -28,7 +28,7 @@
     cnvs.width = 750;
     cnvs.height = 555;
     const c = cnvs.getContext('2d');
-    const timings = {long: 500, short: 2000};
+    const timings = {long: 2000, short: 500};
     const images = [photoA, 'gap', photoB, 'gap'];
 
     const run = (reps) => {
@@ -39,12 +39,12 @@
       while (i <= reps) {
         setTimeout(() => {
           if (images[ii] !== 'gap') {
-            timeOut += timings.long;
+            // timeOut += timings.long;
             const image = images[ii];
             console.log(ii, timeOut);
             c.drawImage(image, 0, 0, 750, 555);
           } else {
-            timeOut += timings.long;
+            // timeOut += timings.long;
             console.log(ii, timeOut);
             c.fillRect(0, 0, 755, 555);
           }
@@ -59,7 +59,7 @@
 
         
         if (images[ii] !== 'gap') {
-          timeOut += timings.long;
+          timeOut += timings.short;
           image = images[ii];
           setTimeout(() => {
             console.log(ii, timeOut);
